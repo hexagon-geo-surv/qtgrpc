@@ -12,11 +12,10 @@
 #include "utils.h"
 #include "options.h"
 
-#include <cassert>
-
 #include <array>
+#include <cassert>
 #include <numeric>
-#include <set>
+
 #include <google/protobuf/stubs/common.h>
 #include <google/protobuf/io/printer.h>
 #include <google/protobuf/io/zero_copy_stream.h>

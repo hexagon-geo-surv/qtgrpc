@@ -10,7 +10,6 @@
 #include "utils.h"
 #include "options.h"
 
-#include <set>
 #include <google/protobuf/compiler/code_generator.h>
 #include <google/protobuf/descriptor.h>
 #include <google/protobuf/io/printer.h>
