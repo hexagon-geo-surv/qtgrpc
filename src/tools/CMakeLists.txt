@@ -1,5 +1,5 @@
 # Copyright (C) 2022 The Qt Company Ltd.
-# SPDX-License-Identifier: BSD-3-Clause
+# SPDX-License-Identifier: LicenseRef-Qt-Commercial
 
 # Skip building qtprotoccommon when not building tools
 if((QT_FEATURE_qtprotobufgen OR QT_FEATURE_qtgrpcgen) AND

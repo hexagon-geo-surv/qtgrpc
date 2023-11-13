@@ -1,6 +1,6 @@
 // Copyright (C) 2022 The Qt Company Ltd.
 // Copyright (C) 2019 Giulio Girardi <giulio.girardi@protechgroup.it>
-// SPDX-License-Identifier: LicenseRef-Qt-Commercial OR GPL-3.0-only
+// SPDX-License-Identifier: LicenseRef-Qt-Commercial
 
 #ifndef QGRPCCHANNEL_H
 #define QGRPCCHANNEL_H
