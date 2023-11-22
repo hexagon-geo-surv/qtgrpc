@@ -1,5 +1,5 @@
 # Copyright (C) 2022 The Qt Company Ltd.
-# SPDX-License-Identifier: LicenseRef-Qt-Commercial
+# SPDX-License-Identifier: BSD-3-Clause
 set(__qt_protobuf_build_internals_base_dir "${CMAKE_CURRENT_LIST_DIR}" CACHE INTERNAL "")
 
 macro(qt_internal_get_internal_add_protobuf_module_keywords option_args single_args multi_args)

@@ -1,5 +1,5 @@
 # Copyright (C) 2022 The Qt Company Ltd.
-# SPDX-License-Identifier: LicenseRef-Qt-Commercial
+# SPDX-License-Identifier: BSD-3-Clause
 
 # The function looks for the service definitions inside provided PROTO_FILES and returns list of
 # the absolute .proto file paths, protobuf include paths and files that are expected to be generated
