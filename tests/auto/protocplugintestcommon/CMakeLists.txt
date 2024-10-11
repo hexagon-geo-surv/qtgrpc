@@ -2,6 +2,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 qt_add_library(protocplugintestcommon STATIC protocplugintestcommon.h protocplugintestcommon.cpp)
+qt_autogen_tools_initial_setup(protocplugintestcommon)
 
 target_include_directories(protocplugintestcommon PUBLIC
     "$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}>")
