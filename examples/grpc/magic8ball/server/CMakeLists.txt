@@ -1,18 +1,18 @@
-# Copyright (C) 2022 The Qt Company Ltd.
+# Copyright (C) 2024 The Qt Company Ltd.
 # SPDX-License-Identifier: LicenseRef-Qt-Commercial OR BSD-3-Clause
 
 cmake_minimum_required(VERSION 3.16)
-project(MagicServerRunner LANGUAGES CXX)
+project(magic8ball_server LANGUAGES CXX)
 
-# Qt6::Grpc module is not used directly in this project. But this allows to find Qt6::Grpc's
-# dependencies without setting extra cmake module paths.
-find_package(Qt6 COMPONENTS Grpc)
-find_package(WrapgRPCPlugin)
+set(CMAKE_FIND_PACKAGE_PREFER_CONFIG TRUE)
+
+find_package(WrapProtoc)
 find_package(WrapgRPC)
+find_package(WrapgRPCPlugin)
 
-if(NOT TARGET WrapgRPC::WrapgRPCPlugin OR NOT TARGET WrapProtoc::WrapProtoc
-    OR NOT TARGET WrapgRPC::WrapLibgRPC)
-    message(WARNING "Dependencies of QtGrpc test server not found. Skipping.")
+if(NOT TARGET WrapProtoc::WrapProtoc OR NOT TARGET WrapgRPC::WrapLibgRPC
+    OR NOT TARGET WrapgRPC::WrapgRPCPlugin)
+    message(WARNING "Dependencies of QtGrpc magic8ball_server not found. Skipping.")
     return()
 endif()
 
@@ -51,42 +51,23 @@ add_custom_command(
 )
 
 set_source_files_properties(${generated_files} PROPERTIES GENERATED TRUE)
-add_library(ServerRunner_grpc_gen STATIC ${generated_files})
-target_include_directories(ServerRunner_grpc_gen
+
+qt_add_executable(magic8ball_server
+    ${generated_files}
+    main.cpp
+)
+
+target_include_directories(magic8ball_server
     PRIVATE
     ${out_dir}
 )
 
-target_link_libraries(ServerRunner_grpc_gen
+target_link_libraries(magic8ball_server
     PRIVATE
     WrapgRPC::WrapLibgRPC
 )
 
-add_library(MagicServerRunner
-    STATIC
-    serverrunner.cpp
-    serverrunner.h
-)
-
-target_include_directories(MagicServerRunner PRIVATE ${out_dir})
-
-target_link_libraries(MagicServerRunner
-    PRIVATE
-    ServerRunner_grpc_gen
-    WrapgRPC::WrapLibgRPC
-    Qt6::Core
-)
-
-qt_add_executable(SimpleGrpcServer
-    main.cpp
-)
-
-target_link_libraries(SimpleGrpcServer PRIVATE
-    Qt6::Core
-    MagicServerRunner
-)
-
-install(TARGETS SimpleGrpcServer
+install(TARGETS magic8ball_server
     RUNTIME DESTINATION "${INSTALL_EXAMPLEDIR}"
     BUNDLE DESTINATION "${INSTALL_EXAMPLEDIR}"
     LIBRARY DESTINATION "${INSTALL_EXAMPLEDIR}"
