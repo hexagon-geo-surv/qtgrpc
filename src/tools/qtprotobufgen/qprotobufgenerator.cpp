@@ -12,11 +12,10 @@
 #include "utils.h"
 #include "options.h"
 
-#include <cassert>
-
 #include <array>
+#include <cassert>
 #include <numeric>
-#include <set>
+
 #include <google/protobuf/stubs/common.h>
 #include <google/protobuf/io/printer.h>
 #include <google/protobuf/io/zero_copy_stream.h>
@@ -36,14 +35,9 @@ QProtobufGenerator::~QProtobufGenerator() = default;
 bool QProtobufGenerator::Generate(const FileDescriptor *file,
                                   [[maybe_unused]] const std::string &parameter,
                                   GeneratorContext *generatorContext,
-                                  std::string *error) const
+                                  [[maybe_unused]] std::string *error) const
 {
     assert(file != nullptr && generatorContext != nullptr);
-
-    if (file->syntax() != FileDescriptor::SYNTAX_PROTO3) {
-        *error = "Invalid proto used. qtprotobufgen only supports 'proto3' syntax";
-        return false;
-    }
 
     return GenerateMessages(file, generatorContext);
 }
